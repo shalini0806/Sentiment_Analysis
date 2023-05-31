@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+	  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='asset_code.css') }}">
+</head>
+<style>
+    :root {
+  --color-primary: #0073ff;
+  --color-white: #e9e9e9;
+  --color-black: #141d28;
+  --color-black-1: #212b38;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+ 
+}
+
+.logo {
+  color: var(--color-white);
+  font-size: 30px;
+}
+
+.logo span {
+  color: var(--color-primary);
+}
+
+.menu-bar {
+  background-color: var(--color-black);
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+
+  position: relative;
+}
+
+.menu-bar ul {
+  list-style: none;
+  display: flex;
+}
+
+.menu-bar ul li {
+  /* width: 120px; */
+  padding: 10px 30px;
+  /* text-align: center; */
+
+  position: relative;
+}
+
+.menu-bar ul li a {
+  font-size: 20px;
+  color: var(--color-white);
+  text-decoration: none;
+
+  transition: all 0.3s;
+}
+
+.menu-bar ul li a:hover {
+  color: var(--color-primary);
+}
+
+.fas {
+  float: right;
+  margin-left: 10px;
+  padding-top: 3px;
+}
+
+/* dropdown menu style */
+.dropdown-menu {
+  display: none;
+}
+
+.menu-bar ul li:hover .dropdown-menu {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: var(--color-black);
+}
+
+.menu-bar ul li:hover .dropdown-menu ul {
+  display: block;
+  margin: 10px;
+}
+
+.menu-bar ul li:hover .dropdown-menu ul li {
+  width: 150px;
+  padding: 10px;
+}
+
+.dropdown-menu-1 {
+  display: none;
+}
+
+.dropdown-menu ul li:hover .dropdown-menu-1 {
+  display: block;
+  position: absolute;
+  left: 150px;
+  top: 0;
+  background-color: var(--color-black);
+}
+
+.hero {
+  height: calc(100vh - 80px);
+  background-image: url(./bg.jpg);
+  background-position: center;
+}
+
+
+.text{
+  padding-left: 100px;
+}
+
+.table {
+        background-color: white;
+        padding: 5px;
+        margin-left: 350px;
+        display: inline-block;
+        }
+        th, td {
+          background-color: white;
+            font-family:  sans-serif;
+            padding: 10px;
+            color: rgb(10, 10, 10);
+            border: 2px solid #060606;
+        } 
+</style>
+<body>
+  <div class="menu-bar menu-bar-dark bg-dark">
+    <h1 class="logo">Shara<span>Code.</span></h1>
+    <ul>
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      
+      <li><a href="#">Prediction <i class="fas fa-caret-down"></i></a>
+  
+        <div class="dropdown-menu">
+          <ul>
+          <li><a href="{{ url_for('second') }}">Vader</a></li>
+          <li><a href="{{ url_for('data') }}">Chart</a></li>
+          <!-- <li>
+            <a href="#">Team <i class="fas fa-caret-right"></i></a>
+            
+            <div class="dropdown-menu-1">
+            <ul>
+              <li><a href="#">Team-1</a></li>
+              <li><a href="#">Team-2</a></li>
+              <li><a href="#">Team-3</a></li>
+              <li><a href="#">Team-4</a></li>
+            </ul>
+            </div>
+          </li> -->
+          <li><a href="{{ url_for('lstm') }}">ML_Model</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a href="{{ url_for('url') }}">Amazon_Review_Analysis</a>
+      </li>
+      <li><a href="{{ url_for('predict') }}">About_Analysis</a></li>
+    </ul>
+    </div>
+
+
+    <h1 style="text-align: center;">Review Analysis </h1>
+    <center><img src="{{image}}" width="800" height="400"></center>
+    <p style="text-align: justify; padding-left: 150px; padding-right: 150px;">The visualization of positive, negative, and neural score reviews is an effective way to communicate customer sentiment towards a product or service. 
+      By using visual aids such as graphs, charts, and diagrams, businesses can easily identify areas of strength and weakness in their offerings.</p>
+    <h2 style="text-align: center">Upload a CSV file</h2>
+   
+    <center><form action="http://169.254.246.227:5000/data" method="POST" enctype="multipart/form-data">
+      <input type="file" name="csv_file" accept=".csv">
+  <button type="submit" class=cv_btn>Predict</button></center>
+    </form>
+    
+      <br><br>
+      
+    {% if plot_url2 %}
+
+      <center><img src="data:image/png;base64,{{ plot_url2 }}" /></center>
+     
+    {% endif %}
+    <div  class="table" style="margin-left: 400px;">
+    {% if data %}
+      {{ data|safe }}
+    {% endif %}
+    </div>
+    {% if plot_url1 %}
+      <center><img style="margin-left: 200px;" src="data:image/png;base64,{{ plot_url1 }}" /></center>
+    {% endif %}
+  <div class="table">
+  {% if df %}
+    {{ df|safe }}
+  {% endif %}
+</div>
+</body>
+</html>

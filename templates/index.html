@@ -1,0 +1,117 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>dropdown Menu</title>
+  </head>
+  <style>
+  .contain {
+  overflow: auto;
+  display:flex;
+  align-items: left; 
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 50px;
+  margin-left: 30px;
+
+ }
+ 
+ img {
+  float: left;
+  margin-left: 30px;
+  
+ }
+ 
+ .text {
+   font-size: 15px;
+ }
+
+  </style>
+  <body>
+    <div class="menu-bar">
+      <h1 class="logo">Shara<span>Code.</span></h1>
+      <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="#">Prediction <i class="fas fa-caret-down"></i></a>
+
+            <div class="dropdown-menu">
+                <ul>
+                  <li><a href="{{ url_for('second') }}">Vader</a></li>
+                  <li><a href="{{ url_for('data') }}">Chart</a></li>
+                  <!-- <li>
+                    <a href="#">Team <i class="fas fa-caret-right"></i></a>
+                    
+                    <div class="dropdown-menu-1">
+                      <ul>
+                        <li><a href="#">Team-1</a></li>
+                        <li><a href="#">Team-2</a></li>
+                        <li><a href="#">Team-3</a></li>
+                        <li><a href="#">Team-4</a></li>
+                      </ul>
+                    </div>
+                  </li> -->
+                  <li><a href="{{ url_for('lstm') }}">ML_Model</a></li>
+                </ul>
+              </div>
+        </li>
+        <li><a href="{{ url_for('url') }}">Amazon_Review_Analysis
+    
+        </a>
+        </li>
+        <li><a href="{{ url_for('predict') }}">About_Analysis</a></li>
+      </ul>
+    </div>
+
+    <div class="hero">
+      &nbsp;
+    </div>
+    <br>
+    <h1 style="text-align: center;">Sentimental Analysis on Reviews </h1>
+    <br>
+    <br>
+    <div class="row">
+      <div class="column">
+        <img src="{{image2}}" width="100%;">
+        <br>
+        <center><h3>Sentimental Analysis Management</h3></center>
+        <br>
+        <center><p>Sentiment analysis (also known as opinion mining or emotion AI) is the use of natural language processing, text analysis, biometrics to systematically identify.</p></center>
+      </div>
+  
+      <div class="column">
+        <img src="{{image3}}" width="80%;">
+        <br>
+        <center><h3>Review Grapha</h3></center>
+        <br>
+        <center><p>A basic task in sentiment analysis is classifying the polarity of a given text at the document, sentence, or feature/aspect level—whether the expressed.</p></center>
+      </div>
+      <div class="column">
+        <img src="{{image1}}" width="95%;">
+        <br>
+        <center><h3>Review Management System</h3></center>
+        <br>
+        <center><p>Sentiment analysis is widely applied to voice of the customer materials such as reviews and survey responses, online and social media, and healthcare</p></center>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <div class="contain">
+      <div class="image">
+        <img src="{{image4}}"  width="600" height="400">
+      </div>
+      <div class="text">
+        <center><h2>Customer Review Sentiment Analysis</h2></center>
+        <br>
+        <br>
+        <div style="text-align: center"></div>
+        <p style="line-height: 1.5;">A basic task in sentiment analysis is classifying the polarity of a given text at the document, sentence, or feature/aspect level whether the expressed opinion in a document,a sentence or an entity feature/aspect is positive, negative, or neutral. Advanced, "beyond polarity" sentiment classification looks, for instance, at emotional states such as enjoyment, anger, disgust, sadness.</p>
+        <br>
+      </div>
+    </div> 
+    </div> 
+  </body>
+</html>
